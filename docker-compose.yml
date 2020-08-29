@@ -20,8 +20,6 @@ services:
        MYSQL_USER: zentao
        MYSQL_PASSWORD: zentao123
        MYSQL_DATABASE: zentao
-    ports:
-      - 3306:3306
     volumes:
       - mariadb_data:/var/lib/mysql
   zendao:
