@@ -1,4 +1,4 @@
-# zentao_docker-compose
+# 禅道部署之Docker-compose
 禅道官网是有提供docker部署镜像的，但这个镜像是套包，没有将数据库分开部署，这里提供docker-compose方式部署，将数据库和php分成了两个容器，同时增加了adminer容器可以非常方便的访问和管理数据库。
 
 ## 使用方法
