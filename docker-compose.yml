@@ -1,0 +1,42 @@
+version: '3'
+
+services:
+  adminer:
+    image: adminer
+    restart: always
+    networks:
+      - zentao
+    ports:
+      - 8080:8080
+  db:
+    build:
+      context: .
+      dockerfile: Dockerfile_db
+    restart: always
+    networks:
+      - zentao
+    environment:
+       MYSQL_ROOT_PASSWORD: mypassword
+       MYSQL_USER: zentao
+       MYSQL_PASSWORD: zentao123
+       MYSQL_DATABASE: zentao
+    ports:
+      - 3306:3306
+    volumes:
+      - mariadb_data:/var/lib/mysql
+  zendao:
+    build: .
+    networks:
+      - zentao
+    restart: always
+    ports:
+      - 2048:80
+    depends_on:
+      - db
+  
+volumes:
+  mariadb_data:
+
+networks:
+  zentao:
+    driver: bridge

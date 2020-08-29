@@ -1,0 +1,9 @@
+FROM mariadb:latest
+
+RUN echo "port = 3306" >> /etc/mysql/my.cnf
+
+COPY 50-server.cnf /etc/mysql/mariadb.conf.d/
+
+EXPOSE 3306
+
+WORKDIR /opt
