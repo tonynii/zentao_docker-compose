@@ -29,11 +29,14 @@ services:
     restart: always
     ports:
       - 2048:80
+    volumes:
+      - backup:/var/www/zentaopms/tmp/backup
     depends_on:
       - db
   
 volumes:
   mariadb_data:
+  backup:
 
 networks:
   zentao:
