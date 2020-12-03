@@ -8,8 +8,8 @@ RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf
 
 RUN sed -i 's/deb.debian.org/mirrors.ustc.edu.cn/g' /etc/apt/sources.list && apt-get update && \
 	apt-get install -y vim wget unzip  && docker-php-ext-install pdo pdo_mysql && \
-	cd /var/www/ && wget https://dl.cnezsoft.com/zentao/12.4.4/ZenTaoPMS.12.4.4.zip \ 
-	&& ls -l && unzip -q ZenTaoPMS.12.4.4.zip && rm ZenTaoPMS.12.4.4.zip && \
+	cd /var/www/ && wget https://dl.cnezsoft.com/zentao/12.5/ZenTaoPMS.12.5.stable.zip \ 
+	&& ls -l && unzip -q ZenTaoPMS.12.5.stable.zip && rm ZenTaoPMS.12.5.stable.zip && \
 	mv "$PHP_INI_DIR/php.ini-production" "$PHP_INI_DIR/php.ini" && chmod o=rwx -R ${APACHE_DOCUMENT_ROOT}
 COPY php.ini /usr/local/etc/php/
 RUN a2enmod rewrite

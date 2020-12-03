@@ -17,3 +17,5 @@
 ![db_login](jpg/db_login.png)
 - 关于数据迁移。可以在adminer页面导入原来数据库的数据。如果打开禅道主页跳转到upgrade.php页面，需要上传upgrade.php文件到www文件夹下，重载页面后按照提示操作即可。
 - 在页面上传如提示文件夹没有权限，可在进入Docker后执行页面提示的指令。
+- 在备份数据页面如提示文件夹没有权限，可在进入Docker后执行“chmod 777 /var/www/zentaopms/tmp/backup/”解决。
+- 可以通过编辑/var/www/zentaopms/config/my.php文件，修改配置。
