@@ -11,6 +11,18 @@
 ![config](jpg/config.png)
 7. 点击保存之后根据页面提示输入相关信息即可使用
 
+## 禅道版本更新
+1. 本docker使用volume作为数据存储，可以通过简单的docker命令升级禅道版本，命令如下：
+```
+docker-compose stop
+docker-compose up
+```
+2. 打开http://your host/upgrade.php，根据页面提示操作即可。
+~ 同版本如果再次执行容器创建操作可能会造成打开页面提示删除文件，按页面提示操作即可。
+
+## 禅道迁移
+1. 直接迁移container和volume即可。
+
 ## 其他
 - 如遇到问题，欢迎给本项目提交issue
 - 数据库管理可登录127.0.0.1:8080, 登录界面如下
