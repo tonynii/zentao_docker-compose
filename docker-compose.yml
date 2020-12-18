@@ -8,6 +8,12 @@ services:
       - zentao
     ports:
       - 8080:8080
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080"]
+      interval: 1m30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
   db:
     build:
       context: .
@@ -22,7 +28,25 @@ services:
        MYSQL_DATABASE: zentao
     volumes:
       - mariadb_data:/var/lib/mysql
-  zendao:
+    healthcheck:
+      test: "/usr/bin/mysql --user=root --password=mypassword --execute \"SHOW DATABASES;\""
+      interval: 2m
+      timeout: 10s
+      retries: 3
+  initzt:
+    image: alpine:latest
+    volumes:
+      - zentao_data:/home
+    command:
+      - /bin/sh
+      - -c 
+      - |
+        cd /home
+        wget https://dl.cnezsoft.com/zentao/12.5/ZenTaoPMS.12.5.stable.zip
+        ls -l
+        unzip -q -o ZenTaoPMS.12.5.stable.zip
+        rm ZenTaoPMS.12.5.stable.zip
+  web:
     build: .
     networks:
       - zentao
@@ -30,7 +54,7 @@ services:
     ports:
       - 2048:80
     volumes:
-      - backup:/var/www/zentaopms/tmp/backup
+      - zentao_data:/var/www
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost"]
       interval: 1m30s
@@ -39,10 +63,11 @@ services:
       start_period: 30s
     depends_on:
       - db
+      - initzt
   
 volumes:
   mariadb_data:
-  backup:
+  zentao_data:
 
 networks:
   zentao:
