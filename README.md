@@ -5,7 +5,7 @@
 1. 克隆项目到本地
 2. 在终端上切换目录到此项目目录中
 3. 运行docker-compose build
-4. 运行docker-compose up
+4. 运行docker-compose up -d
 5. 在浏览器中打开127.0.0.1:2048，会进入禅道的install页面。
 6. 点击下一步进入配置文件设置界面，输入如下图
 ![config](jpg/config.png)
