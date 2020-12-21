@@ -53,6 +53,8 @@ services:
     restart: always
     ports:
       - 2048:80
+      - 11444:11444
+      - 11443:11443
     volumes:
       - zentao_data:/var/www
     healthcheck:
