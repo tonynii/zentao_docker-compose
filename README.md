@@ -1,3 +1,34 @@
+# Docker-compose zentao Practice deployment
+The zentao website provides a Docker deployment image, but the image is a package and the database is not deployed separately. The docker-compose method is provided here, which divides the database and PHP into two containers. The AdMiner container is also added to make it very easy to access and manage the database.
+## Usage
+1. Clone the project locally
+2. Switch the directory to this project directory on the terminal
+3. Run Docker-Compose Build
+4. Run Docker-Compose up -d
+5. Open 127.0.0.1:2048 in your browser and you will enter the Install page of Zentao.
+6. Click next to enter the configuration file setting interface and enter the following figure
+![config](jpg/config.png)
+7. Click save and enter relevant information according to the page prompt for use
+## ZenTao version updated
+1. This Docker uses volume as data storage and can upgrade the version of Zen Buddhism through a simple Docker command, which is as follows:
+```
+docker-compose stop
+docker-compose up -d
+```
+2. Open http://your host/upgrade.php and follow the prompts on the page.
+
+> In the same version, if the container creation operation again may cause the open page prompt to delete the file, just follow the page prompt.
+## Zen Migration
+1. Simply migrate the container and volume.
+## other
+- If you encounter any problems, please feel free to submit an issue to this project
+- Database management can log in 127.0.0.1:8080 with the login interface as follows
+![db_login](jpg/db_login.png)
+- About data migration.You can import data from the original database on the AdMiner page.If you open the Zen Path home page and jump to the upgrade.php page, you need to upload the upgrade.php file to the WWW folder. After reloading the page, follow the prompts.
+- If you do not have permission to upload to the page, you can execute instructions prompted by the page after entering Docker.
+- in the backup data page prompt folder without permission, but after entering the Docker execution "chmod 777 / var/WWW/zentaopms/TMP/backup/" solution.
+- can edit the/var/WWW/zentaopms/config/my PHP file, modify the configuration.
+
 # 禅道部署之Docker-compose
 禅道官网是有提供docker部署镜像的，但这个镜像是套包，没有将数据库分开部署，这里提供docker-compose方式部署，将数据库和php分成了两个容器，同时增加了adminer容器可以非常方便的访问和管理数据库。
 
@@ -18,7 +49,7 @@ docker-compose stop
 docker-compose up
 ```
 2. 打开http://your host/upgrade.php，根据页面提示操作即可。
-~ 同版本如果再次执行容器创建操作可能会造成打开页面提示删除文件，按页面提示操作即可。
+> 同版本如果再次执行容器创建操作可能会造成打开页面提示删除文件，按页面提示操作即可。
 
 ## 禅道迁移
 1. 直接迁移container和volume即可。
