@@ -1,3 +1,5 @@
+[English](#Docker-compose_zentao_Practice_deployment) | [中文](#禅道部署之Docker-compose)
+
 # Docker-compose zentao Practice deployment
 The zentao website provides a Docker deployment image, but the image is a package and the database is not deployed separately. The docker-compose method is provided here, which divides the database and PHP into two containers. The AdMiner container is also added to make it very easy to access and manage the database.
 ## Usage
@@ -18,6 +20,14 @@ docker-compose up -d
 2. Open http://your host/upgrade.php and follow the prompts on the page.
 
 > In the same version, if the container creation operation again may cause the open page prompt to delete the file, just follow the page prompt.
+
+> Different versions of the page will prompt you to create a file in the directory. You can use the Docker exec directive to add it to the container and execute commands, such as:
+```
+docker exec -it zentao_docker-compose_web_1 bash
+root@bdca:/var/www/html# touch /var/www/zentaopms/www/ok.txt
+root@bdca:/var/www/html# exit
+```
+
 ## Zen Migration
 1. Simply migrate the container and volume.
 ## other
@@ -50,6 +60,13 @@ docker-compose up
 ```
 2. 打开http://your host/upgrade.php，根据页面提示操作即可。
 > 同版本如果再次执行容器创建操作可能会造成打开页面提示删除文件，按页面提示操作即可。
+
+> 不同版本页面会提示在目录下创建文件，可以使用docker exec指令加入容器内部，执行命令，例如：
+```
+docker exec -it zentao_docker-compose_web_1 bash
+root@bdca:/var/www/html# touch /var/www/zentaopms/www/ok.txt
+root@bdca:/var/www/html# exit
+```
 
 ## 禅道迁移
 1. 直接迁移container和volume即可。
