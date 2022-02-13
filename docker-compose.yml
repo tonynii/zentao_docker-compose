@@ -42,10 +42,10 @@ services:
       - -c 
       - |
         cd /home
-        wget https://www.zentao.net/dl/zentao/16.0/ZenTaoPMS.16.0.zip
+        wget https://www.zentao.net/dl/zentao/16.3/ZenTaoPMS.16.3.zip
         ls -l
-        unzip -q -o ZenTaoPMS.16.0.zip
-        rm ZenTaoPMS.16.0.zip
+        unzip -q -o ZenTaoPMS.16.3.zip
+        rm ZenTaoPMS.16.3.zip
   web:
     build: .
     networks:
