@@ -79,3 +79,23 @@ root@bdca:/var/www/html# exit
 - 在页面上传如提示文件夹没有权限，可在进入Docker后执行页面提示的指令。
 - 在备份数据页面如提示文件夹没有权限，可在进入Docker后执行“chmod 777 /var/www/zentaopms/tmp/backup/”解决。
 - 可以通过编辑/var/www/zentaopms/config/my.php文件，修改配置。
+- 初始化数据库提示“you need (at least one of) the SUPER, BINLOG ADMIN privilege(s) for this operation”。此问题由zentao数据库用户无SUPER权限引起，可以使用数据库root用户或者进入数据库管理页面对zentao用户进行提权操作，步骤如下：
+```
+$ docker exec -it zentao_docker-compose_db_1 bash
+root@ffda1b75b5f1:/opt# mysql -u root -p
+Enter password: 
+ERROR 1045 (28000): Access denied for user 'root'@'localhost' (using password: YES)
+root@ffda1b75b5f1:/opt# mysql -u root -p
+Enter password: 
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MariaDB connection id is 7
+Server version: 10.6.4-MariaDB-1:10.6.4+maria~focal mariadb.org binary distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MariaDB [(none)]> GRANT SUPER ON *.* TO `zentao`@`%`;
+Query OK, 0 rows affected (0.002 sec)
+```
+> 数据库密码为mypassword。
