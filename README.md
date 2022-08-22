@@ -99,3 +99,7 @@ MariaDB [(none)]> GRANT SUPER ON *.* TO `zentao`@`%`;
 Query OK, 0 rows affected (0.002 sec)
 ```
 > 数据库密码为mypassword。
+
+### Infrastructure model
+
+![Infrastructure model](.infragenie/infrastructure_model.png)
